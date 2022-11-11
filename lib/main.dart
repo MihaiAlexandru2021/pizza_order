@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_order/PizzaOrderDetails.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MainPizzaOrderApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainPizzaOrderApp extends StatelessWidget {
+  const MainPizzaOrderApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.light(),
+      home: PizzaOrderDetails()
     );
   }
 }
