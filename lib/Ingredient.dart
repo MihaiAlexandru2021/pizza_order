@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class Ingredient {
+class Ingredient{
   const Ingredient(
       this.image,
       this.imageUnit,
@@ -15,7 +15,7 @@ class Ingredient {
 const ingredients = <Ingredient> [
   Ingredient(
     'assets/images/chili.png',
-    'assets/images/chili_unit',
+    'assets/images/chili_unit.png',
     <Offset>[
       Offset(0.2, 0.2),
       Offset(0.6, 0.2),
@@ -26,7 +26,7 @@ const ingredients = <Ingredient> [
   ),
   Ingredient(
     'assets/images/mushroom.png',
-    'assets/images/mushroom_unit',
+    'assets/images/mushroom_unit.png',
     <Offset>[
       Offset(0.2, 0.35),
       Offset(0.65, 0.35),
@@ -37,7 +37,7 @@ const ingredients = <Ingredient> [
   ),
   Ingredient(
     'assets/images/olive.png',
-    'assets/images/olive_unit',
+    'assets/images/olive_unit.png',
     <Offset>[
       Offset(0.25, 0.5),
       Offset(0.65, 0.6),
