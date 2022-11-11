@@ -174,7 +174,7 @@ class _PizzaDetailsState extends State<_PizzaDetails>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
         Column(
         children: [
