@@ -91,11 +91,14 @@ class _PizzaDetailsState extends State<_PizzaDetails> with TickerProviderStateMi
   final _notifierPizzaSize =
       ValueNotifier<_PizzaSizeState>(_PizzaSizeState(_PizzaSizeValue.M));
 
-  Widget _buildIngredientsWidget() {
+  Widget _buildIngredientsWidget(Ingredient? deletedIngredient) {
     List<Widget> elements = [];
-    final listIngredients = PizzaOrderProvider.of(context)?.listIngredients;
+    final listIngredients = List.from(PizzaOrderProvider.of(context)!.listIngredients);
+    if (deletedIngredient != null) {
+      listIngredients.add(deletedIngredient);
+    }
     if (_animationList.isNotEmpty) {
-      for (int i = 0; i < listIngredients!.length; i++) {
+      for (int i = 0; i < listIngredients.length; i++) {
         Ingredient ingredient = listIngredients[i];
         final ingredientWidget = Image.asset(ingredient.imageUnit, height: 40);
         for (int j = 0; j < ingredient.position.length; j++) {
@@ -105,7 +108,7 @@ class _PizzaDetailsState extends State<_PizzaDetails> with TickerProviderStateMi
           final positionY = position.dy;
           double fromX = 0.0, fromY = 0.0;
 
-          if (i == listIngredients.length - 1) {
+          if (i == listIngredients.length - 1 && _animationController.isAnimating) {
             if (j < 1) {
               fromX = -(_pizzaConstraints?.maxWidth)! * (1 - animation.value);
             } else if (j < 2) {
@@ -248,11 +251,17 @@ class _PizzaDetailsState extends State<_PizzaDetails> with TickerProviderStateMi
                                 },
                               ),
                             ),
-                            AnimatedBuilder(
-                                animation: _animationController,
-                                builder: (context, _) {
-                                  return _buildIngredientsWidget();
-                                })
+                            ValueListenableBuilder<Ingredient?>(
+                              valueListenable: block!.notifierDeletedIngredient ,
+                              builder: (context, deletedIngredient, _) {
+                                _animateRemovedIngredient(deletedIngredient);
+                                return AnimatedBuilder(
+                                    animation: _animationController,
+                                    builder: (context, _) {
+                                      return _buildIngredientsWidget(deletedIngredient);
+                                    });
+                              }
+                            )
                           ],
                         ),
                       );
@@ -318,6 +327,14 @@ class _PizzaDetailsState extends State<_PizzaDetails> with TickerProviderStateMi
         )
       ],
     );
+  }
+
+  Future<void> _animateRemovedIngredient(Ingredient? deletedIngredient) async{
+    if (deletedIngredient != null) {
+      await _animationController.reverse(from: 1.0);
+      final block = PizzaOrderProvider.of(context);
+      block!.refreshRemoveIngredient();
+    }
   }
 
   void _updatePizza(_PizzaSizeValue value) {
