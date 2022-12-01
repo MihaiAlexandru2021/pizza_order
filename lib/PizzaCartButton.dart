@@ -50,14 +50,14 @@ class PizzaCartButtonState extends State<PizzaCartButton>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [Colors.orange.withOpacity(0.5), Colors.orange]),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26,
                     blurRadius: 15.0,
                     offset: Offset(0.0, 4.0),
                     spreadRadius: 4.0)
               ]),
-          child: Icon(
+          child: const Icon(
             Icons.shopping_cart_outlined,
             color: Colors.white,
             size: 35,
