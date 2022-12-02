@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -7,6 +8,7 @@ import 'dart:math' as math;
 import 'package:pizza_order/Pizza.dart';
 import 'package:pizza_order/PizzaCartIcon.dart';
 import 'package:pizza_order/PizzaOrderDetails.dart';
+import 'package:pizza_order/ProfileSettings.dart';
 
 import 'Pizza.dart';
 
@@ -20,6 +22,7 @@ class PizzaOrderHome extends StatefulWidget {
 }
 
 class _PizzaOrderHomeState extends State<PizzaOrderHome> {
+  final user = FirebaseAuth.instance.currentUser!;
   final List<Pizza> items = [];
   late PageController pageController;
   double scrollOfSet = 0.0;
@@ -111,12 +114,12 @@ class _PizzaOrderHomeState extends State<PizzaOrderHome> {
               }),
           Center(
               child: Padding(
-            padding: EdgeInsets.only(top: size.height * .67),
-            child: PizzaListItemInfo(
-              pizza: pizzaSelected,
-            ),
+                padding: EdgeInsets.only(top: size.height * .67),
+                child: PizzaListItemInfo(
+                  pizza: pizzaSelected,
+                ),
           )),
-          MyAppBar(title: 'Order Normally')
+          MyAppBar(title: user.email)
         ],
       ),
     )
@@ -156,9 +159,15 @@ class PizzaListItemInfo extends StatelessWidget {
 }
 
 class MyAppBar extends StatelessWidget {
-  final String title;
+  final String? title;
 
   const MyAppBar({required this.title});
+
+  void navigateToSettingsPage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (_) => ProfileSettings(),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +183,7 @@ class MyAppBar extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.headline6),
+                Text(title!, style: Theme.of(context).textTheme.headline6),
                 Row(
                   children: [
                     Icon(Icons.location_on, size: 18,),
@@ -183,7 +192,13 @@ class MyAppBar extends StatelessWidget {
                 )
               ],
             ),
-            PizzaCartIcon()
+            PizzaCartIcon(),
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                navigateToSettingsPage(context);
+              }
+            )
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pizza_order/PizzaOrderBlock.dart';
+
+import 'PizzaOrderBlock.dart';
 
 class PizzaOrderProvider extends InheritedWidget {
 

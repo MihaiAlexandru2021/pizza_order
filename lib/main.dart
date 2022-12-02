@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pizza_order/PizzaOrderHome.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'auth/MainPage.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MainPizzaOrderApp());
 }
 
@@ -14,10 +19,10 @@ class MainPizzaOrderApp extends StatelessWidget {
     _portraitModeOnly();
     return MaterialApp(
       theme: ThemeData.light(),
-      home: PizzaOrderHome()
+      home: MainPage()
     );
   }
-
+  
   void _portraitModeOnly() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "233299560463",
+    "firebase_url": "https://iehapppizzaorder-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "iehapppizzaorder",
+    "storage_bucket": "iehapppizzaorder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233299560463:android:0c6c47112cac4408f23b7a",
+        "android_client_info": {
+          "package_name": "com.iehapp.pizzaorder.pizza_order"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233299560463-gj2fcuk6mmias7q40s1f2gcerbf7af57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfgqglxl8Y1sqcq0on7kyrZlzbA-PdJVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233299560463-gj2fcuk6mmias7q40s1f2gcerbf7af57.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "233299560463-kha9pgpd1ava3f0au67cnpgenvan5qgu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iehapp.pizzaorder.pizzaOrder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
