@@ -22,7 +22,18 @@ class MainPizzaOrderApp extends StatelessWidget {
       home: MainPage()
     );
   }
-  
+
+  /*
+  TODO: add circular loading if Pizza is not ready 
+  Connect details PizzaDetails to Firebase
+  Solve problem with positioned indgredients
+  show error in LoginPage if incoreclty pass
+  add regex for registerPage
+
+
+//  COURSE FIREBASE https://www.youtube.com/watch?v=idJDAdn_jKk&list=PLlvRDpXh1Se4wZWOWs8yapI8AS_fwDHzf&index=6&ab_channel=MitchKoko video 7
+// CRUD FIREBASE https://www.youtube.com/watch?v=ErP_xomHKTw
+   */
   void _portraitModeOnly() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

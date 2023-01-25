@@ -2,12 +2,10 @@ class Pizza {
   const Pizza(
       this.name,
       this.image,
-      this.starCount,
       this.price);
 
   final String name;
   final String image;
-  final int starCount;
   final double price;
 }
 

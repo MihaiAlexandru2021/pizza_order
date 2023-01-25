@@ -4,19 +4,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pizza_order/Ingredient.dart';
-import 'package:pizza_order/PizzaCartIcon.dart';
-import 'package:pizza_order/PizzaOrderHome.dart';
+import 'package:pizza_order/data/PizzaFirebase.dart';
+import 'package:pizza_order/element/MyAppBar.dart';
+import 'package:pizza_order/element/PizzaCartIcon.dart';
 import 'package:pizza_order/PizzaOrderProvider.dart';
-import 'PizzaCartButton.dart';
-import 'Pizza.dart';
-import 'PizzaIngredients.dart';
-import 'PizzaOrderBlock.dart';
-import 'PizzaSizeButton.dart';
+import '../element/PizzaCartButton.dart';
+import '../Pizza.dart';
+import '../PizzaIngredients.dart';
+import '../PizzaOrderBlock.dart';
+import '../element/PizzaSizeButton.dart';
 
 const _pizzaCartSize = 48.0;
 
 class PizzaOrderDetails extends StatefulWidget {
-  final Pizza pizza;
+  final PizzaFirebase pizza;
 
   const PizzaOrderDetails({required this.pizza});
 
@@ -35,7 +36,7 @@ class _PizzaOrderDetailsState extends State<PizzaOrderDetails> {
           appBar: AppBar(
             iconTheme: const IconThemeData(color: Colors.brown),
             title: Text(
-              widget.pizza.name,
+              widget.pizza.name!,
               style: const TextStyle(
                 color: Colors.brown,
                 fontSize: 28,
@@ -87,7 +88,7 @@ class _PizzaOrderDetailsState extends State<PizzaOrderDetails> {
 }
 
 class _PizzaDetails extends StatefulWidget {
-  final Pizza pizza;
+  final PizzaFirebase pizza;
 
   const _PizzaDetails({required this.pizza});
 
@@ -215,8 +216,8 @@ class _PizzaDetailsState extends State<_PizzaDetails>
   @override
   Widget build(BuildContext context) {
     final block = PizzaOrderProvider.of(context);
-    block?.notifierTotal.value = widget.pizza.price.toInt();
-    block?.notifierPizzaPrice.value = widget.pizza.price.toInt();
+    block?.notifierTotal.value = widget.pizza.price!;
+    block?.notifierPizzaPrice.value = widget.pizza.price!;
     return Column(
       children: [
         Expanded(
@@ -292,8 +293,8 @@ class _PizzaDetailsState extends State<_PizzaDetails>
                                                       padding:
                                                           const EdgeInsets.all(
                                                               12.0),
-                                                      child: Image.asset(
-                                                          widget.pizza.image))
+                                                      child: Image.network(
+                                                          widget.pizza.image!))
                                                 ],
                                               ),
                                             );
